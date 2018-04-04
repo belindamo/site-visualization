@@ -5,7 +5,7 @@ import { InteractiveForceGraph, ForceGraphNode, ForceGraphLink, ForceGraphArrowL
 //https://github.com/uber/react-vis-force/blob/master/docs/InteractiveForceGraph.md
 //https://github.com/uber/react-vis-force/blob/master/docs/ForceGraph.md
 
-class SiteTree extends React.Component {
+class SiteVisualization extends React.Component {
 	
 	constructor(props) {
 		super(props);
@@ -38,4 +38,4 @@ class SiteTree extends React.Component {
 	
 };
 
-export default SiteTree;
+export default SiteVisualization;

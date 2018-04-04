@@ -1,6 +1,12 @@
-
+var $ = require('jquery');
 var getPageInfo = (url) => {
-	console.log('getting page info');
+  $.get(url)
+    .done((data) => {
+      console.log(data);
+    })
+    .fail(() => {
+      console.log('Error');
+    });
 };
 
 export default getPageInfo;

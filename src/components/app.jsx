@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Search from "./search.jsx";
-import SiteTree from "./siteTree.jsx";
+import SiteVisualization from "./siteVisualization.jsx";
 import getPageInfo from "./../lib/getPageInfo.js";
 import Detail from "./detail.jsx";
 // import exampleTreeData from "./../data/exampleTreeData.js"
 import {Row, Col} from 'react-materialize';
 import exampleGraphData from "./../data/exampleGraphData.js";
-
+// import SiteGraph
 
 class App extends React.Component {
 	constructor(props) {
@@ -41,7 +41,7 @@ class App extends React.Component {
 						<Detail node={this.state.selectedNode}/>
 					</Col>
 					<Col m={9} s={12}>
-						<SiteTree graph={this.state.graph} handleNodeSelect={this.handleNodeSelect}/>
+						<SiteVisualization graph={this.state.graph} handleNodeSelect={this.handleNodeSelect}/>
 					</Col>
 				</Row>
 			</div>
