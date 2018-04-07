@@ -45,7 +45,12 @@ var link5 = {
 
 
 const exampleGraphData = {
-  nodes: [node1, node2, node3, node4],
+  nodes: {
+    "www.example.com": node1, 
+    "www.example.com/about": node2, 
+    "www.example.com/about/hello.html": node3, 
+    "www.example.com/contact": node4
+  },
   links: [link1, link2, link3, link4, link5],
   maxNodes: 200,
   greatestLinkCount: 4

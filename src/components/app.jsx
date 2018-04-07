@@ -14,7 +14,7 @@ class App extends React.Component {
 		super(props);
 		this.state = {
 			graph: exampleGraphData,
-			selectedNode: exampleGraphData.nodes[0]
+			selectedNode: exampleGraphData.nodes["www.example.com"]
 		};
 		this.handleSearch = this.handleSearch.bind(this);
 		this.handleNodeSelect = this.handleNodeSelect.bind(this);
