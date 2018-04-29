@@ -9,23 +9,30 @@ import { InteractiveForceGraph, ForceGraphNode, ForceGraphLink, ForceGraphArrowL
 class SiteVisualization extends React.Component {
 	
 	constructor(props) {
-		super(props);
-		//props.graph is the graph data
-	}
+    super(props);
+    // console.log(props);
+		// props.graph is the graph data
+  }
+  
+  // componentDidUpdate() {
+  //   console.log(this.props);
+  // }
 
 	render() {
+    // console.log('site v props: ', this.props);
 		var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
     var nodes = _.map(this.props.graph.nodes, (node, key) => (
-			<ForceGraphNode node={{ id: node.id, label: node.label }} 
+			<ForceGraphNode key={key} node={{ id: node.id, label: node.label }} 
 				fill={colors[Math.floor((node.nLinksTo + node.nLinksFrom)/
 					this.props.graph.greatestLinkCount * (colors.length - 1))]} />
 		));
 		var links = _.map(this.props.graph.links, (link, index) => (
-			<ForceGraphArrowLink targetRadius={2} link={{source: link.source, target: link.target}} />
-		));
-		return (
+			<ForceGraphArrowLink key={index} targetRadius={2} link={{source: link.source, target: link.target}} />
+    ));
+    var x = (
 			<InteractiveForceGraph
-				simulationOptions={{ height: 300, width: 600 }}
+        zoomOptions={{minScale: 50}}
+				simulationOptions={{ animate: true, height: 300, width: 600 }}
 				labelAttr="label"
 				onSelectNode={this.props.handleNodeSelect}
 				highlightDependencies
@@ -34,6 +41,8 @@ class SiteVisualization extends React.Component {
 				{links}
 			</InteractiveForceGraph>
 		);
+    // console.log(x);
+		return x;
 	}
 	
 };

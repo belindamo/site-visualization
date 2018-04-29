@@ -4,31 +4,58 @@ import Search from "./search.jsx";
 import SiteVisualization from "./siteVisualization.jsx";
 import getPageInfo from "./../lib/getPageInfo.js";
 import Detail from "./detail.jsx";
-// import exampleTreeData from "./../data/exampleTreeData.js"
 import {Row, Col} from 'react-materialize';
 import exampleGraphData from "./../data/exampleGraphData.js";
-// import SiteGraph
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			graph: exampleGraphData,
-			selectedNode: exampleGraphData.nodes["www.example.com"]
-		};
+			selectedNode:  exampleGraphData.nodes["www.example.com"]
+    };
+    // console.log(exampleGraphData);
 		this.handleSearch = this.handleSearch.bind(this);
 		this.handleNodeSelect = this.handleNodeSelect.bind(this);
-	}
+  }
+  
+  componentDidMount() {
+    // console.log(exampleGraphData);
+    this.setState({
+      graph: exampleGraphData,
+			selectedNode: exampleGraphData.nodes["www.example.com"]
+    });
+
+
+    // getPageInfo('https://slickdeals.net', (data) => {
+    //   this.setState({
+    //     graph: data,
+    //     selectedNode: data['nodes']["https://slickdeals.net"]
+    //   });
+    // });
+  }
 
 	handleSearch(url, nPages) {
-		console.log('handling search', url, nPages);
-		getPageInfo("http://www.reddit.com");
+    console.log('handling search', url, nPages);
+    // this.setState({
+    //   graph: exampleGraphData,
+		// 	selectedNode: exampleGraphData.nodes["www.example.com"]
+    // })
+		getPageInfo('https://slickdeals.net', (data) => {
+      data = JSON.parse(data);  
+      console.log(data);
+      this.setState({
+        graph: data,
+        selectedNode: data.nodes["https://slickdeals.net"]
+      });
+      // console.log(this.state.graph, this.state.selectedNode);
+      // this.forceUpdate();
+    });
 	}
 	
 	handleNodeSelect(evt, node) {
-		console.log('Node selected: ', node);
-		this.setState({selectedNode: node});
-		
+		// console.log('Node selected: ', node);
+		this.setState({selectedNode: this.state.graph.nodes[node.id]});
 	}
 
 	render() {

@@ -7,15 +7,16 @@ class Detail extends React.Component {
 	//props should contain node, which is current selected node
 	constructor(props) {
 		super(props);
-		console.log(props.node);
+		// console.log(props.node);
 	}
 
 	render() {
 		return (
-			<Card className='left-align hoverable' textClassName='' title={this.props.node.label} actions={[<a href={this.props.node.id}>Go to page</a>]}>
-				<p> <span>Url: </span><span>{this.props.node.id}</span></p>
-				<p> <span>Links to other pages: </span><span>{this.props.node.nLinksFrom}</span></p>
-				<p> <span>Links from other pages: </span><span>{this.props.node.nLinksTo}</span></p>  	
+      <Card key="card" className='left-align hoverable' textClassName='' title={this.props.node.label} 
+        actions={[<a key="toPage" target="_blank" href={this.props.node.id}>Go to page</a>]}>
+				<p key="url"> <span>Url: </span><span>{this.props.node.id}</span></p>
+				<p key="linkFrom"> <span>Links to other pages: </span><span>{this.props.node.nLinksFrom.toString()}</span></p>
+				<p key="linkTo"> <span>Links from other pages: </span><span>{this.props.node.nLinksTo.toString()}</span></p>  	
 			</Card>
 		);
 	}

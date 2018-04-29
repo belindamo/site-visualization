@@ -7,7 +7,7 @@ import {Section, Row, Col, Input, Button, Icon} from 'react-materialize';
 class Search extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state={text:'http://www.reddit.com/', max: 200};
+		this.state={text:'https://slickdeals.net', max: 200};
 
 		this.handleMaxChange = this.handleMaxChange.bind(this);
 		this.handleTextChange = this.handleTextChange.bind(this);
