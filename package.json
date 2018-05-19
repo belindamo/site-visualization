@@ -28,20 +28,21 @@
     "nodemon": "^1.17.3"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
     "bootstrap": "^4.0.0-alpha.2",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.3",
     "jquery": "^3.3.1",
     "materialize-css": "^0.100.2",
+    "node-jsdom": "^3.1.5",
+    "path": "^0.12.7",
     "react": "^16.2.0",
     "react-d3-tree": "^1.10.1",
     "react-dom": "^16.2.0",
     "react-materialize": "^2.1.2",
+    "react-sigma": "^1.2.30",
     "react-vis-force": "^0.3.1",
-    "underscore": "^1.8.3",
-    "body-parser": "^1.18.2",
-    "cheerio": "^1.0.0-rc.2",
-    "express": "^4.16.3",
-    "node-jsdom": "^3.1.5",
-    "path": "^0.12.7",
-    "request": "^2.85.0"
+    "request": "^2.85.0",
+    "underscore": "^1.8.3"
   }
 }

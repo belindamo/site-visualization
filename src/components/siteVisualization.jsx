@@ -1,9 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import _ from "underscore";
-import { InteractiveForceGraph, ForceGraph, ForceGraphNode, ForceGraphLink, ForceGraphArrowLink } from 'react-vis-force';
-//https://github.com/uber/react-vis-force/blob/master/docs/InteractiveForceGraph.md
-//https://github.com/uber/react-vis-force/blob/master/docs/ForceGraph.md
+import myGraph from "./../data/sigmaExampleData.js";
+import myGraph2 from "./../data/sigmaExampleData2.js";
+import {Sigma, RandomizeNodePositions, RelativeSize} from 'react-sigma';
 
 const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 
@@ -11,42 +10,43 @@ class SiteVisualization extends React.Component {
 	
 	constructor(props) {
     super(props);
+    console.log('hello');
 		// props.graph is the graph data
     // this.myRef = React.createRef();
+    this.state = {
+      num : 0
+    };
+  }
+
+  componentDidMount() {
   }
   
   componentDidUpdate() {
-    console.log(this.props);
+    console.log('updating');
+    if (this.state.num === 0) {
+      this.setState({
+        num: 1
+      });
+    }
   }
 
   createForceGraph() {
-    var nodes = _.map(this.props.graph.nodes, (node, key) => (
-			<ForceGraphNode key={key} node={{ id: node.id, label: node.label }} 
-				fill={colors[Math.floor((node.nLinksTo + node.nLinksFrom)/
-					this.props.graph.greatestLinkCount * (colors.length - 1))]} />
-		));
-		var links = _.map(this.props.graph.links, (link, index) => (
-			<ForceGraphArrowLink key={index} link={{source: link.source, target: link.target}} />
-    ));
-    return (
-			<ForceGraph
-        zoomOptions={{minScale: 50}}
-				simulationOptions={{ animate: true, height: 300, width: 600 }}
-				labelAttr="label"
-				onSelectNode={this.props.handleNodeSelect}
-				highlightDependencies
-			>
-				{nodes}
-				{links}
-			</ForceGraph>
-		);
   }  
 
 	render() {
-    // console.log('site v props: ', this.props);
-		
-    // console.log(x);
-		return this.createForceGraph();
+    var graph = this.state.num === 0 ? myGraph : myGraph2;
+    console.log('num is ', this.state.num);
+    console.log('graph is ', graph);
+		return (
+      <Sigma 
+      ref={node => this.graph = node}
+      graph={graph} 
+      settings={{drawEdges: true, clone: false}}
+      >
+        <RelativeSize initialSize={15}/>
+        <RandomizeNodePositions/>
+      </Sigma>    
+    );
 	}
 	
 };

@@ -25,7 +25,7 @@ class App extends React.Component {
     //   graph: exampleGraphData,
 		// 	selectedNode: exampleGraphData.nodes["www.example.com"]
     // });
-    this.handleSearch('http://www.neopets.com');
+    // this.handleSearch('http://www.neopets.com');
 
 
     // getPageInfo('https://slickdeals.net', (data) => {
