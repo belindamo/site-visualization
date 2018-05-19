@@ -1,36 +1,35 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import _ from "underscore";
-import Tree from "react-d3-tree";
-import { InteractiveForceGraph, ForceGraphNode, ForceGraphLink, ForceGraphArrowLink } from 'react-vis-force';
+import { InteractiveForceGraph, ForceGraph, ForceGraphNode, ForceGraphLink, ForceGraphArrowLink } from 'react-vis-force';
 //https://github.com/uber/react-vis-force/blob/master/docs/InteractiveForceGraph.md
 //https://github.com/uber/react-vis-force/blob/master/docs/ForceGraph.md
+
+const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 
 class SiteVisualization extends React.Component {
 	
 	constructor(props) {
     super(props);
-    // console.log(props);
 		// props.graph is the graph data
+    // this.myRef = React.createRef();
   }
   
-  // componentDidUpdate() {
-  //   console.log(this.props);
-  // }
+  componentDidUpdate() {
+    console.log(this.props);
+  }
 
-	render() {
-    // console.log('site v props: ', this.props);
-		var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+  createForceGraph() {
     var nodes = _.map(this.props.graph.nodes, (node, key) => (
 			<ForceGraphNode key={key} node={{ id: node.id, label: node.label }} 
 				fill={colors[Math.floor((node.nLinksTo + node.nLinksFrom)/
 					this.props.graph.greatestLinkCount * (colors.length - 1))]} />
 		));
 		var links = _.map(this.props.graph.links, (link, index) => (
-			<ForceGraphArrowLink key={index} targetRadius={2} link={{source: link.source, target: link.target}} />
+			<ForceGraphArrowLink key={index} link={{source: link.source, target: link.target}} />
     ));
-    var x = (
-			<InteractiveForceGraph
+    return (
+			<ForceGraph
         zoomOptions={{minScale: 50}}
 				simulationOptions={{ animate: true, height: 300, width: 600 }}
 				labelAttr="label"
@@ -39,10 +38,15 @@ class SiteVisualization extends React.Component {
 			>
 				{nodes}
 				{links}
-			</InteractiveForceGraph>
+			</ForceGraph>
 		);
+  }  
+
+	render() {
+    // console.log('site v props: ', this.props);
+		
     // console.log(x);
-		return x;
+		return this.createForceGraph();
 	}
 	
 };

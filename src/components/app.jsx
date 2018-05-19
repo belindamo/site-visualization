@@ -21,10 +21,11 @@ class App extends React.Component {
   
   componentDidMount() {
     // console.log(exampleGraphData);
-    this.setState({
-      graph: exampleGraphData,
-			selectedNode: exampleGraphData.nodes["www.example.com"]
-    });
+    // this.setState({
+    //   graph: exampleGraphData,
+		// 	selectedNode: exampleGraphData.nodes["www.example.com"]
+    // });
+    this.handleSearch('http://www.neopets.com');
 
 
     // getPageInfo('https://slickdeals.net', (data) => {
@@ -41,18 +42,18 @@ class App extends React.Component {
     //   graph: exampleGraphData,
 		// 	selectedNode: exampleGraphData.nodes["www.example.com"]
     // })
-		getPageInfo('https://slickdeals.net', (data) => {
+		getPageInfo(url, (data) => {
       data = JSON.parse(data);  
       console.log(data);
       this.setState({
         graph: data,
-        selectedNode: data.nodes["https://slickdeals.net"]
+        selectedNode: data.nodes[url]
       });
       // console.log(this.state.graph, this.state.selectedNode);
       // this.forceUpdate();
     });
-	}
-	
+  }
+
 	handleNodeSelect(evt, node) {
 		// console.log('Node selected: ', node);
 		this.setState({selectedNode: this.state.graph.nodes[node.id]});
