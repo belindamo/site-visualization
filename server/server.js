@@ -26,7 +26,7 @@ app.get('/sites', (req, res) => {
   crawler.run()
   .then((siteData) => { 
     // console.log('RESULTS: ', siteData);
-    res.status(200).end(JSON.stringify(siteData));
+    res.status(200).send(siteData);
   })
   .catch((err) => {
     res.status(404).end(err);
