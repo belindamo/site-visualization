@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import _ from "underscore";
-import { InteractiveForceGraph, ForceGraph, ForceGraphNode, ForceGraphLink, ForceGraphArrowLink } from 'react-vis-force';
+import { InteractiveForceGraph, ForceGraphNode, ForceGraphLink, ForceGraphArrowLink } from 'react-vis-force';
 //https://github.com/uber/react-vis-force/blob/master/docs/InteractiveForceGraph.md
 //https://github.com/uber/react-vis-force/blob/master/docs/ForceGraph.md
 
@@ -21,7 +21,7 @@ class SiteVisualization extends React.Component {
 
   createForceGraph() {
     var nodes = _.map(this.props.graph.nodes, (node, key) => (
-			<ForceGraphNode key={key} node={{ id: node.id, label: node.label }} 
+			<ForceGraphNode key={key} node={{ id: node.id, label: node.label, radius: 10 }} 
 				fill={colors[Math.floor((node.nLinksTo + node.nLinksFrom)/
 					this.props.graph.greatestLinkCount * (colors.length - 1))]} />
 		));
@@ -29,16 +29,16 @@ class SiteVisualization extends React.Component {
 			<ForceGraphArrowLink key={index} link={{source: link.source, target: link.target}} />
     ));
     return (
-			<ForceGraph
+			<InteractiveForceGraph
         zoomOptions={{minScale: 50}}
-				simulationOptions={{ animate: true, height: 300, width: 600 }}
+				simulationOptions={{ animate: true, height: 300, width: 600, alpha: 1 }}
 				labelAttr="label"
 				onSelectNode={this.props.handleNodeSelect}
 				highlightDependencies
 			>
 				{nodes}
 				{links}
-			</ForceGraph>
+			</InteractiveForceGraph>
 		);
   }  
 

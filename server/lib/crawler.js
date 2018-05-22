@@ -5,7 +5,6 @@ class Node {
   constructor(id, label) {
     this.id = id;
     this.label = label;
-    this.size = 3;
     this.nLinksTo = 0;
     this.nLinksFrom = 0;
   }
@@ -29,14 +28,25 @@ class Crawler {
     this.queue = [];
   }
 
+  addLinks(info) {
+    const source = info.url;
+    console.log('reached here: ', source, info.links);
+    info.links.forEach(function(i, link) {
+      console.log('LINK', link);
+      this.links.push(new Link(source, link));
+    });
+  }
 
   addNode(info) {
-    if (info.url) { // if is valid
-      console.log('info: ', info);
-      this.nodes[info.url] = new Node(info.url, info.title);
+    if (info) { // if is valid
+      // console.log('info: ', info);
+      this.nodes[info.url] = new Node(info.url, info.title);    
+  
       // console.log('queue: ', this.queue);
       // console.log('info links: ', info.links);
-      
+      console.log(this.addLinks, info)
+      this.addLinks(info);
+
       //add links to queue
       this.queue = this.queue.concat(info.links);
       
