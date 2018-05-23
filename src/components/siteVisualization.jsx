@@ -22,7 +22,7 @@ class SiteVisualization extends React.Component {
   createForceGraph() {
     var nodes = _.map(this.props.graph.nodes, (node, key) => (
 			<ForceGraphNode key={key} node={{ id: node.id, label: node.label, radius: 10 }} 
-				fill={colors[Math.floor((node.nLinksTo + node.nLinksFrom)/
+				fill={colors[Math.floor((node.sourceCt + node.targetCt)/
 					this.props.graph.greatestLinkCount * (colors.length - 1))]} />
 		));
 		var links = _.map(this.props.graph.links, (link, index) => (
@@ -31,7 +31,13 @@ class SiteVisualization extends React.Component {
     return (
 			<InteractiveForceGraph
         zoomOptions={{minScale: 50}}
-				simulationOptions={{ animate: true, height: 300, width: 600, alpha: 1 }}
+				simulationOptions={{ 
+          animate: true, 
+          height: 300, 
+          width: 600, 
+          alpha: 1
+          // radiusMargin: 50
+        }}
 				labelAttr="label"
 				onSelectNode={this.props.handleNodeSelect}
 				highlightDependencies

@@ -1,11 +1,11 @@
 var $ = require('jquery');
-var getPageInfo = (url, callback) => {
+var getPageInfo = (url, maxPages, callback) => {
   $.ajax({
     url: "/sites",
     type: 'GET',
     data: {
       baseUrl: url,
-      maxPages: 3
+      maxPages: maxPages
     },
     success: (data) => {
       data = JSON.parse(JSON.stringify(data));
