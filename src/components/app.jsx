@@ -12,28 +12,11 @@ class App extends React.Component {
 		super(props);
 		this.state = {
 			graph: exampleGraphData,
-			selectedNode:  exampleGraphData.nodes["www.example.com"]
+			selectedNode: exampleGraphData.nodes["http://slickdeals.net"]
     };
-    // console.log(exampleGraphData);
+    console.log(exampleGraphData);
 		this.handleSearch = this.handleSearch.bind(this);
 		this.handleNodeSelect = this.handleNodeSelect.bind(this);
-  }
-  
-  componentDidMount() {
-    // console.log(exampleGraphData);
-    // this.setState({
-    //   graph: exampleGraphData,
-		// 	selectedNode: exampleGraphData.nodes["www.example.com"]
-    // });
-    this.handleSearch('http://www.neopets.com');
-
-
-    // getPageInfo('https://slickdeals.net', (data) => {
-    //   this.setState({
-    //     graph: data,
-    //     selectedNode: data['nodes']["https://slickdeals.net"]
-    //   });
-    // });
   }
 
 	handleSearch(url, nPages) {
@@ -42,8 +25,7 @@ class App extends React.Component {
     //   graph: exampleGraphData,
 		// 	selectedNode: exampleGraphData.nodes["www.example.com"]
     // })
-		getPageInfo(url, (data) => {
-      data = JSON.parse(data);  
+		getPageInfo(url, nPages, (data) => {
       console.log(data);
       this.setState({
         graph: data,

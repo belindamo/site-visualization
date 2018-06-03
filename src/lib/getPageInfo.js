@@ -1,20 +1,19 @@
-var $ = require('jquery');
-var getPageInfo = (url, callback) => {
+const $ = require('jquery');
+
+const getPageInfo = (url, maxPages, callback) => {
   $.ajax({
-    url: "/sites",
+    url: '/sites',
     type: 'GET',
     data: {
       baseUrl: url,
-      maxPages: 3
+      maxPages,
     },
     success: (data) => {
-      data = JSON.parse(JSON.stringify(data));
-      // console.log('GET SUCCESS: ', data);
       callback(data);
     },
     error: (err) => {
-      console.log(err);
-    }
+      console.log('Error: ', err);
+    },
   });
 };
 

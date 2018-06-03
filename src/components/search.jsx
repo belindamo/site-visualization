@@ -24,7 +24,7 @@ class Search extends React.Component {
 	}
 
 	handleSubmit(e) {
-		e.preventDefault();
+    e.preventDefault();
 		this.props.handleSearch(this.state.text, this.state.max);
 	}
 
