@@ -9,7 +9,9 @@
     "dev-server": "webpack-dev-server --mode development --open",
     "deploy": "npm run build | npm run start",
     "build:prod": "webpack --mode production",
-    "build": "webpack -d --watch"
+    "build": "webpack -d --watch",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "keywords": [],
   "author": "",
